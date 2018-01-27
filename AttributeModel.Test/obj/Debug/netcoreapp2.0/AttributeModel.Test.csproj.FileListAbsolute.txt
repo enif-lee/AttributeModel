@@ -1,0 +1,15 @@
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\bin\Debug\netcoreapp2.0\AttributeModel.Test.deps.json
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\bin\Debug\netcoreapp2.0\AttributeModel.Test.runtimeconfig.json
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\bin\Debug\netcoreapp2.0\AttributeModel.Test.runtimeconfig.dev.json
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\bin\Debug\netcoreapp2.0\AttributeModel.Test.dll
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\bin\Debug\netcoreapp2.0\AttributeModel.Test.pdb
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\bin\Debug\netcoreapp2.0\AttributeModel.Core.dll
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\bin\Debug\netcoreapp2.0\AttributeModel.Core.pdb
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\obj\Debug\netcoreapp2.0\AttributeModel.Test.csproj.CoreCompileInputs.cache
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\obj\Debug\netcoreapp2.0\AttributeModel.Test.AssemblyInfoInputs.cache
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\obj\Debug\netcoreapp2.0\AttributeModel.Test.AssemblyInfo.cs
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\obj\Debug\netcoreapp2.0\AttributeModel.Test.dll
+G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Test\obj\Debug\netcoreapp2.0\AttributeModel.Test.pdb
