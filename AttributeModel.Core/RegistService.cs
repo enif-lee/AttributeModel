@@ -19,19 +19,13 @@ namespace AttributeModel.Core
         {
             types
                 .Where(type => type.GetCustomAttribute<ComponentAttribute>(true) != null)
-                .Where(type => type.GetInterfaces().Any())
                 .Select(type => (
-                    Interface: type.GetInterfaces().Single(), 
+                    Interface: type.GetInterfaces().SingleOrDefault() ?? type, 
                     Implemented: type, 
                     LifeStyle: type.GetCustomAttribute<ComponentAttribute>(true).LifestyleType
                 ))
                 .ToList()
                 .ForEach(meta => ResolveLoader.Resolve(meta.Interface, meta.Implemented, meta.LifeStyle));
-        }
-
-        public void Regist()
-        {
-            Regist(Assembly.GetCallingAssembly().GetExportedTypes());
         }
     }
 }

@@ -7,7 +7,7 @@ namespace AttributeModel.Core.Attributes
         public LifestyleType LifestyleType { get; set; }
         public string Name { get; set; }
 
-        public ComponentAttribute(LifestyleType lifestyleType, string name)
+        public ComponentAttribute(LifestyleType lifestyleType, string name = null)
         {
             LifestyleType = lifestyleType;
             Name = name;
