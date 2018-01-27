@@ -177,23 +177,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yano2\\.nuget\\packages\\": {},
+    "C:\\Users\\DELL\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj",
+      "projectUniqueName": "D:\\dev\\git\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj",
       "projectName": "AttributeModel.Core",
-      "projectPath": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj",
-      "packagesPath": "C:\\Users\\yano2\\.nuget\\packages\\",
-      "outputPath": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core\\obj\\",
+      "projectPath": "D:\\dev\\git\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "D:\\dev\\git\\AttributeModel\\AttributeModel.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\yano2\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"

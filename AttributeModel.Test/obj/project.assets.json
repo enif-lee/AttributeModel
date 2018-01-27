@@ -5808,23 +5808,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yano2\\.nuget\\packages\\": {},
+    "C:\\Users\\DELL\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Test\\AttributeModel.Test.csproj",
+      "projectUniqueName": "D:\\dev\\git\\AttributeModel\\AttributeModel.Test\\AttributeModel.Test.csproj",
       "projectName": "AttributeModel.Test",
-      "projectPath": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Test\\AttributeModel.Test.csproj",
-      "packagesPath": "C:\\Users\\yano2\\.nuget\\packages\\",
-      "outputPath": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Test\\obj\\",
+      "projectPath": "D:\\dev\\git\\AttributeModel\\AttributeModel.Test\\AttributeModel.Test.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "D:\\dev\\git\\AttributeModel\\AttributeModel.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\yano2\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -5835,11 +5835,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core.SimpleInjector\\AttributeModel.Core.SimpleInjector.csproj": {
-              "projectPath": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core.SimpleInjector\\AttributeModel.Core.SimpleInjector.csproj"
+            "D:\\dev\\git\\AttributeModel\\AttributeModel.Core.SimpleInjector\\AttributeModel.Core.SimpleInjector.csproj": {
+              "projectPath": "D:\\dev\\git\\AttributeModel\\AttributeModel.Core.SimpleInjector\\AttributeModel.Core.SimpleInjector.csproj"
             },
-            "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj": {
-              "projectPath": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj"
+            "D:\\dev\\git\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj": {
+              "projectPath": "D:\\dev\\git\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj"
             }
           }
         }

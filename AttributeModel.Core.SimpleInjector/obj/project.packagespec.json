@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core.SimpleInjector\\AttributeModel.Core.SimpleInjector.csproj",
+    "projectUniqueName": "D:\\dev\\git\\AttributeModel\\AttributeModel.Core.SimpleInjector\\AttributeModel.Core.SimpleInjector.csproj",
     "projectName": "AttributeModel.Core.SimpleInjector",
-    "projectPath": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core.SimpleInjector\\AttributeModel.Core.SimpleInjector.csproj",
-    "outputPath": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core.SimpleInjector\\obj\\",
+    "projectPath": "D:\\dev\\git\\AttributeModel\\AttributeModel.Core.SimpleInjector\\AttributeModel.Core.SimpleInjector.csproj",
+    "outputPath": "D:\\dev\\git\\AttributeModel\\AttributeModel.Core.SimpleInjector\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -15,8 +15,8 @@
     "frameworks": {
       "netstandard2.0": {
         "projectReferences": {
-          "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj": {
-            "projectPath": "G:\\dev\\git\\aspnet-apm\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj"
+          "D:\\dev\\git\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj": {
+            "projectPath": "D:\\dev\\git\\AttributeModel\\AttributeModel.Core\\AttributeModel.Core.csproj"
           }
         }
       }

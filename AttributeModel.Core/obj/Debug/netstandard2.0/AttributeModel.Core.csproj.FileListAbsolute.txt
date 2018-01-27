@@ -6,3 +6,11 @@ G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Core\obj\Debug\netstandard2.
 G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Core\obj\Debug\netstandard2.0\AttributeModel.Core.AssemblyInfo.cs
 G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Core\obj\Debug\netstandard2.0\AttributeModel.Core.dll
 G:\dev\git\aspnet-apm\AttributeModel\AttributeModel.Core\obj\Debug\netstandard2.0\AttributeModel.Core.pdb
+D:\dev\git\AttributeModel\AttributeModel.Core\bin\Debug\netstandard2.0\AttributeModel.Core.deps.json
+D:\dev\git\AttributeModel\AttributeModel.Core\bin\Debug\netstandard2.0\AttributeModel.Core.dll
+D:\dev\git\AttributeModel\AttributeModel.Core\bin\Debug\netstandard2.0\AttributeModel.Core.pdb
+D:\dev\git\AttributeModel\AttributeModel.Core\obj\Debug\netstandard2.0\AttributeModel.Core.csproj.CoreCompileInputs.cache
+D:\dev\git\AttributeModel\AttributeModel.Core\obj\Debug\netstandard2.0\AttributeModel.Core.AssemblyInfoInputs.cache
+D:\dev\git\AttributeModel\AttributeModel.Core\obj\Debug\netstandard2.0\AttributeModel.Core.AssemblyInfo.cs
+D:\dev\git\AttributeModel\AttributeModel.Core\obj\Debug\netstandard2.0\AttributeModel.Core.dll
+D:\dev\git\AttributeModel\AttributeModel.Core\obj\Debug\netstandard2.0\AttributeModel.Core.pdb

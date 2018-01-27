@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using SimpleInjector;
 
 namespace AttributeModel.Core.SimpleInjector
@@ -9,7 +10,7 @@ namespace AttributeModel.Core.SimpleInjector
         {
             var service = new RegistService(new ResolveLoader(container));
             
-            service.Regist();
+            service.Regist(Assembly.GetCallingAssembly().ExportedTypes);
         }
     }
 }
