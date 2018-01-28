@@ -8,7 +8,7 @@ using SimpleInjector;
 namespace AttributeModel.Test.Core.SimpleInjector
 {
     [TestClass]
-    public class RegistTest
+    public class RegistTest : IRegistTest
     {
         private Container _container;
 
@@ -44,19 +44,21 @@ namespace AttributeModel.Test.Core.SimpleInjector
 
 
         [TestMethod]
-        public void test()
+        public void should_return_same_unregistered_instance_when_lifestyle_is_singleton()
         {
-            _container.ResolveUnregisteredType += (sender, e) =>
-            {
-                var type = e;
-                var serviceType = type.UnregisteredServiceType;
-                
-//                _container.Register(serviceType);
-                var instance = _container.GetInstance(serviceType);
-                e.Register(() => instance);
-            };
+            var a = _container.GetInstance<UnregisterTypeSingleton>();
+            var b = _container.GetInstance<UnregisterTypeSingleton>();
+            
+            a.Should().BeEquivalentTo(b);
+        }
 
-            _container.GetInstance<UnregisterType>();
+        [TestMethod]
+        public void should_return_other_unregisted_instance_when_lifestyle_is_transient()
+        {
+            var a = _container.GetInstance<UnregisterTypeTransient>();
+            var b = _container.GetInstance<UnregisterTypeTransient>();
+            
+            a.Should().NotBe(b);
         }
     }
 }
