@@ -41,5 +41,22 @@ namespace AttributeModel.Test.Core.SimpleInjector
             
             a.Should().Be(b);
         }
+
+
+        [TestMethod]
+        public void test()
+        {
+            _container.ResolveUnregisteredType += (sender, e) =>
+            {
+                var type = e;
+                var serviceType = type.UnregisteredServiceType;
+                
+//                _container.Register(serviceType);
+                var instance = _container.GetInstance(serviceType);
+                e.Register(() => instance);
+            };
+
+            _container.GetInstance<UnregisterType>();
+        }
     }
 }
