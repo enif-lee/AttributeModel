@@ -1,5 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>AttributeModel.Core</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Jinseoung Lee</Authors>
+    <Description>Attribute Promgramming Model for IoC Container</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright 2017 yano2413@gmail.com. All rights reserved.</Copyright>
+    <PackageTags>IoC DI AMP Attribute-Programming-Model ASP.NET</PackageTags>
   </PropertyGroup>
 </Project>
