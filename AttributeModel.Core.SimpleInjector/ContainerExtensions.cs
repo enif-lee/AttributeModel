@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using AttributeModel.Core.Attributes;
 using SimpleInjector;
@@ -29,14 +30,18 @@ namespace AttributeModel.Core.SimpleInjector
             container.ResolveUnregisteredType += (sender, e) =>
             {
                 var unregistered = e.UnregisteredServiceType;
-                var component = unregistered.GetCustomAttribute<ComponentAttribute>(true);
 
+                if (!unregistered.IsClass || !unregistered.GetConstructors().Any(info => info.IsPublic))
+                    return;
+                
+                var component = unregistered.GetCustomAttribute<ComponentAttribute>(true);
+                    
                 var lifestyle = component == null
                     ? Lifestyle.Singleton
                     : LifeStyleFactory.Create(component.LifestyleType);
-                
+                    
                 var registration = lifestyle.CreateRegistration(unregistered, container);
-
+    
                 e.Register(registration);
             };
 

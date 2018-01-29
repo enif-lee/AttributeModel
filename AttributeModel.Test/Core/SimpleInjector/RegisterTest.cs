@@ -1,4 +1,5 @@
-﻿using AttributeModel.Core.SimpleInjector;
+﻿using System;
+using AttributeModel.Core.SimpleInjector;
 using AttributeModel.Test.Context;
 using AttributeModel.Test.Core.SimpleInjector.Common;
 using FluentAssertions;
@@ -8,7 +9,7 @@ using SimpleInjector;
 namespace AttributeModel.Test.Core.SimpleInjector
 {
     [TestClass]
-    public class RegistTest : IRegistTest
+    public class RegisterTest : IRegisterTest
     {
         private Container _container;
 
@@ -68,6 +69,14 @@ namespace AttributeModel.Test.Core.SimpleInjector
             var b = _container.GetInstance<UnregisterTypeWithoutAttribute>();
             
             a.Should().BeEquivalentTo(b);
+        }
+
+        [TestMethod]
+        public void should_throw_error_when_request_unregisterd_interface_type()
+        {
+            var action = new Action(() => { _container.GetInstance<UnregisteredInterface>(); });
+
+            action.Should().ThrowExactly<ActivationException>("No registration for type UnregisteredInterface could be found.");
         }
     }
 }
