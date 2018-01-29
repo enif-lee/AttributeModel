@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using AttributeModel.Core.Attributes;
 using SimpleInjector;
@@ -7,7 +8,21 @@ namespace AttributeModel.Core.SimpleInjector
 {
     public static class ContainerExtensions
     {
+        /// <summary>
+        /// Register calling assembly as default
+        /// </summary>
+        /// <param name="container">ioc container</param>
         public static void Regist(this Container container)
+        {
+            container.Regist(Assembly.GetCallingAssembly().ExportedTypes);
+        }
+
+        /// <summary>
+        /// Register components using assembly from parameter
+        /// </summary>
+        /// <param name="container">ioc container</param>
+        /// <param name="types">assemblies</param>
+        public static void Regist(this Container container, IEnumerable<Type> types)
         {
             var service = new RegistService(new ResolveLoader(container));
 
@@ -16,16 +31,16 @@ namespace AttributeModel.Core.SimpleInjector
                 var unregistered = e.UnregisteredServiceType;
                 var component = unregistered.GetCustomAttribute<ComponentAttribute>(true);
 
-                if (component == null) return;
+                var lifestyle = component == null
+                    ? Lifestyle.Singleton
+                    : LifeStyleFactory.Create(component.LifestyleType);
                 
-                var registration = LifeStyleFactory
-                    .Create(component.LifestyleType)
-                    .CreateRegistration(unregistered, container);
-                    
+                var registration = lifestyle.CreateRegistration(unregistered, container);
+
                 e.Register(registration);
             };
-            
-            service.Regist(Assembly.GetCallingAssembly().ExportedTypes);
+
+            service.Regist(types);
         }
     }
 }

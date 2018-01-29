@@ -60,5 +60,14 @@ namespace AttributeModel.Test.Core.SimpleInjector
             
             a.Should().NotBe(b);
         }
+
+        [TestMethod]
+        public void should_return_singleton_instance_as_default_when_unregisted_type_hasnt_component_attribute()
+        {
+            var a = _container.GetInstance<UnregisterTypeWithoutAttribute>();
+            var b = _container.GetInstance<UnregisterTypeWithoutAttribute>();
+            
+            a.Should().BeEquivalentTo(b);
+        }
     }
 }
