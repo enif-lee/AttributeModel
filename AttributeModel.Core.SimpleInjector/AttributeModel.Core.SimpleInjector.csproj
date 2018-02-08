@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>AttributeModel.Core.SimpleInjector</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
     <Authors>Jinseoung Lee</Authors>
     <Description>AttributeModel.Core Extension for SimpleInjector</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

@@ -19,23 +19,72 @@
 
 `AttributeModel`은 `.netstandard 2.0`을 기반으로 제공됩니다. `.NET Framework 4.6.1` 혹은 `.NET Core 2.0`이상에서 동작이 가능합니다.
 
-### Installing
+### Installation
 
-// Todo
+Powershell Package Manger에서 아래와 같이 설치할 수 있습니다.
 
-### Apply
+```powershell
+Install-Package AttributeModel.Core.SimpleInjector -Version 1.0.0-rc002
+```
 
-// Todo
+또는 .NET CLI로 설치 할 수 있습니다.
 
-### Run and tests
+```sh
+dotnet add package AttributeModel.Core.SimpleInjector --version 1.0.0-rc002
+```
 
-// Todo
 
-## Todo(Future)
+### Run and test
 
-- [x] SimpleInjector (Recommended)
-- [ ] AutoFac
-- [ ] Ninject
+적용 방법은 굉장히 간단합니다.
+
+```csharp
+var conatiner = new Container();
+
+container.Regist(); // Just do it!
+
+// If you want to regist specific assembly, do it.
+container.Regist(typeof(ISomeService).Assembly);
+```
+
+그리고 만약 `Service`나 `Repository`를 정의하고 싶을 때는 아래와 같이 Attribute로 설정해주시면 됩니다.
+
+```csharp
+[Service]
+public class UserService : IUserService
+{
+    private IUserRepository UserRepository { get; set; }
+
+    constructor(IUserRepository userRepository)
+    {
+        UserRepository = userRepository;
+    }
+}
+
+[Repository]
+public class UserRepository : IUserRepository
+{
+    // code...
+}
+```
+
+만약 어떤 컴포넌트 혹은 서비스에 대해서 특정한 라이프사이클을 지정하고 싶을 땐 아래와 같이 작성해주시면 됩니다.
+
+```csharp
+[Component(Lifestyle.SingleTon)]
+public class UserService : IUserService
+{
+    // code...
+}
+```
+
+위와 같은 설정이 끝나셨다면 더 이상 등록할 필요 없이 DI를 즐기시면 됩니다!
+
+## Extensions
+
+- [x] [SimpleInjector](https://github.com/simpleinjector/SimpleInjector) (Recommend)
+- [ ] [AutoFac](https://github.com/autofac/Autofac)
+- [ ] [Ninject](https://github.com/ninject/Ninject)
 - [ ] ASP.NET Core IoC Container
 - [ ] ASP.NET Core Extension
 - [ ] ASP.NET Web Mvc Extension
