@@ -9,9 +9,9 @@
     <PackageTags>IoC DI AMP Attribute-Programming-Model ASP.NET</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="SimpleInjector" Version="4.0.12" />
+    <ProjectReference Include="..\AttributeModel.Core\AttributeModel.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AttributeModel.Core\AttributeModel.Core.csproj" />
+    <PackageReference Include="SimpleInjector" Version="4.1.0" />
   </ItemGroup>
 </Project>

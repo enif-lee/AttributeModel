@@ -9,4 +9,7 @@
     <Copyright>Copyright 2017 yano2413@gmail.com. All rights reserved.</Copyright>
     <PackageTags>IoC DI AMP Attribute-Programming-Model ASP.NET</PackageTags>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
+  </ItemGroup>
 </Project>
