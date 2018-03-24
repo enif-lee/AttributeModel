@@ -1,6 +1,11 @@
 # AttributeModel
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e63abd0e297d4608ba116fe4b5ac528e)](https://app.codacy.com/app/lakin32/AttributeModel?utm_source=github.com&utm_medium=referral&utm_content=lakin32/AttributeModel&utm_campaign=badger)
+![NuGet](https://img.shields.io/nuget/dt/AttributeModel.Core.svg)
+![NuGet](https://img.shields.io/nuget/v/AttributeModel.Core.svg)
+![NuGet Pre Release](https://img.shields.io/nuget/vpre/AttributeModel.Core.svg)
+
+
 
 > Attribute Programming Model for IOC Container libraries.
 
