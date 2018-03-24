@@ -1,5 +1,7 @@
 # AttributeModel
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e63abd0e297d4608ba116fe4b5ac528e)](https://app.codacy.com/app/lakin32/AttributeModel?utm_source=github.com&utm_medium=referral&utm_content=lakin32/AttributeModel&utm_campaign=badger)
+
 > Attribute Programming Model for IOC Container libraries.
 
 이 프로젝트는 Attribute 기반으로 IoC 컨테이너 등록을 자동화하기 위해 만든 프로젝트입니다. `.NET`의 IoC 컨테이너 라이브러리는 모두 수기로 혹은 낮은 수준의 배치 등록을 통해 자동화 할 수 있었지만 아래와 같은 제약사항 있었습니다.
