@@ -5,6 +5,5 @@ namespace AttributeModel.Test.Context.Repository
     [Repository]
     public class DeepSampleRepository : ISampleService
     {
-        
     }
 }

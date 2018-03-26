@@ -23,7 +23,7 @@ namespace AttributeModel.Test.Core.SimpleInjector
                     DefaultScopedLifestyle = new TestScopedLifestyle(),
                 }
             };
-            _container.Regist();
+            _container.UseAttributeModel();
         }
         
         [TestMethod]
@@ -74,7 +74,7 @@ namespace AttributeModel.Test.Core.SimpleInjector
         [TestMethod]
         public void should_throw_error_when_request_unregisterd_interface_type()
         {
-            var action = new Action(() => { _container.GetInstance<UnregisteredInterface>(); });
+            var action = new Action(() => { _container.GetInstance<IUnregisteredInterface>(); });
 
             action.Should().ThrowExactly<ActivationException>("No registration for type UnregisteredInterface could be found.");
         }

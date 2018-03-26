@@ -4,13 +4,15 @@ namespace AttributeModel.Core.Attributes
 {
     public class ComponentAttribute : Attribute
     {
-        public LifestyleType LifestyleType { get; set; }
-        public string Name { get; set; }
+        public LifestyleType? LifestyleType { get; set; }
 
-        public ComponentAttribute(LifestyleType lifestyleType, string name = null)
+        public ComponentAttribute()
+        {
+        }
+        
+        public ComponentAttribute(LifestyleType lifestyleType)
         {
             LifestyleType = lifestyleType;
-            Name = name;
         }
     }
 }

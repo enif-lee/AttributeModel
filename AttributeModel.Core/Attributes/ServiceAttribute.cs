@@ -2,7 +2,11 @@
 {
     public class ServiceAttribute : ComponentAttribute
     {
-        public ServiceAttribute(LifestyleType lifestyleType = LifestyleType.Scoped, string name = null) : base(lifestyleType, name)
+        public ServiceAttribute() : base()
+        {
+        }
+
+        public ServiceAttribute(LifestyleType lifestyleType) : base(lifestyleType)
         {
         }
     }

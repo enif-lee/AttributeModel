@@ -1,8 +1,12 @@
-﻿using System;
+﻿using System.Reflection;
+using AttributeModel.Core.SimpleInjector;
+using AttributeModel.Core.SimpleInjector.Configuration;
 using AttributeModel.Test.Context;
 using AttributeModel.Test.Context.Repository;
-using AttributeModel.Test.Context.Service;
+using FluentAssertions;
+using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SimpleInjector;
 
 namespace AttributeModel.Test.Core.SimpleInjector
 {
@@ -10,11 +14,30 @@ namespace AttributeModel.Test.Core.SimpleInjector
     public class ConfigurationTest
     {
         [TestMethod]
-        [DataRow(typeof(ISampleRepository), typeof(DeepSampleRepository))]
-        [DataRow(typeof(ISampleService), typeof(DeepSampleService))]
-        public void should_use_registered_assembly_when_configuration_instance_is_exists(Type Interface, Type implemented)
+        public void should_use_registered_assembly_when_configuration_instance_is_exist()
         {
-            // Vim 쓰기 어렵다 ㅎㅎ.
+            var container = new Container();
+            
+            container.UseAttributeModel(new DefaultSetting
+            {
+                Assembly = null,
+                RepositorySetting =  new RegistrationSetting
+                {
+//                    Assembly = null
+                    Assembly = typeof(DeepSampleRepository).Assembly
+                }
+            });
+
+            container.GetInstance<ISampleRepository>().Should().BeOfType<DeepSampleRepository>();
+            
+            roslynTest(null);
+        }
+
+        
+        
+        public void roslynTest([NotNull] object test)
+        {
+            
         }
     }
 }

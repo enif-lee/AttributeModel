@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AttributeModel.Core.Attributes;
+using AttributeModel.Core.SimpleInjector.Configuration;
 using SimpleInjector;
 
 namespace AttributeModel.Core.SimpleInjector
@@ -10,12 +11,13 @@ namespace AttributeModel.Core.SimpleInjector
     public static class ContainerExtensions
     {
         /// <summary>
-        /// Register calling assembly as default
+        /// Register calling assembly as default.
+        /// Default life style is scoped.
         /// </summary>
         /// <param name="container">ioc container</param>
-        public static void Regist(this Container container)
+        public static void UseAttributeModel(this Container container)
         {
-            container.Regist(Assembly.GetCallingAssembly().ExportedTypes);
+            container.UseAttributeModel(Assembly.GetCallingAssembly().ExportedTypes, LifestyleType.Scoped);
         }
 
         /// <summary>
@@ -23,7 +25,8 @@ namespace AttributeModel.Core.SimpleInjector
         /// </summary>
         /// <param name="container">ioc container</param>
         /// <param name="types">assemblies</param>
-        public static void Regist(this Container container, IEnumerable<Type> types)
+        /// <param name="defaultLifestyle">ComponentAttrbute default lifestyle</param>
+        public static void UseAttributeModel(this Container container, IEnumerable<Type> types, LifestyleType defaultLifestyle)
         {
             var service = new RegistService(new ResolveLoader(container));
 
@@ -38,7 +41,7 @@ namespace AttributeModel.Core.SimpleInjector
                     
                 var lifestyle = component == null
                     ? Lifestyle.Singleton
-                    : LifeStyleFactory.Create(component.LifestyleType);
+                    : LifeStyleFactory.Create(component.LifestyleType ?? defaultLifestyle);
                     
                 var registration = lifestyle.CreateRegistration(unregistered, container);
     
@@ -46,6 +49,16 @@ namespace AttributeModel.Core.SimpleInjector
             };
 
             service.Regist(types);
+        }
+
+        public static void UseAttributeModel(this Container container, DefaultSetting types)
+        {
+            if(types.Assembly == null && types?.ServiceSetting?.Assembly == null && types?.RepositorySetting?.Assembly == null)
+                throw new ArgumentNullException("There are no base base assemblies to registration.");
+            
+            UseAttributeModel(container, types.Assembly.ExportedTypes, types.LifestyleType);
+            
+            
         }
     }
 }

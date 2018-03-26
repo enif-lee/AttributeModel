@@ -17,12 +17,17 @@ namespace AttributeModel.Core
 
         public void Regist(IEnumerable<Type> types)
         {
+            Regist<ComponentAttribute>(types, LifestyleType.Singleton);
+        }
+
+        private void Regist<T>(IEnumerable<Type> types, LifestyleType lifestyleType) where T : ComponentAttribute
+        {
             types
-                .Where(type => type.GetCustomAttribute<ComponentAttribute>(true) != null)
+                .Where(type => type.GetCustomAttribute<T>(true) != null)
                 .Select(type => (
-                    Interface: type.GetInterfaces().SingleOrDefault() ?? type, 
-                    Implemented: type, 
-                    LifeStyle: type.GetCustomAttribute<ComponentAttribute>(true).LifestyleType
+                    Interface: type.GetInterfaces().SingleOrDefault() ?? type,
+                    Implemented: type,
+                    LifeStyle: type.GetCustomAttribute<T>(true).LifestyleType ?? lifestyleType
                 ))
                 .ToList()
                 .ForEach(meta => ResolveLoader.Resolve(meta.Interface, meta.Implemented, meta.LifeStyle));
