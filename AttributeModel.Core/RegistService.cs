@@ -15,12 +15,12 @@ namespace AttributeModel.Core
             ResolveLoader = resolveLoader;
         }
 
-        public void Regist(IEnumerable<Type> types)
+        public void RegisterComponents(IEnumerable<Type> types)
         {
-            Regist<ComponentAttribute>(types, LifestyleType.Singleton);
+            RegisterComponents<ComponentAttribute>(types, LifestyleType.Singleton);
         }
 
-        private void Regist<T>(IEnumerable<Type> types, LifestyleType lifestyleType) where T : ComponentAttribute
+        private void RegisterComponents<T>(IEnumerable<Type> types, LifestyleType lifestyleType) where T : ComponentAttribute
         {
             types
                 .Where(type => type.GetCustomAttribute<T>(true) != null)

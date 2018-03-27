@@ -5,6 +5,10 @@ namespace AttributeModel.Core.SimpleInjector.Configuration
 {
     public class RegistrationSetting
     {
+        public RegistrationSetting()
+        {
+        }
+        
         public RegistrationSetting([NotNull] Assembly assembly)
         {
             Assembly = assembly;
@@ -16,7 +20,7 @@ namespace AttributeModel.Core.SimpleInjector.Configuration
             LifestyleType = lifestyleType;
         }
 
-        [NotNull] public Assembly Assembly { get; set; }
+        public Assembly Assembly { get; set; }
 
         /// <summary>
         /// Default as singleton

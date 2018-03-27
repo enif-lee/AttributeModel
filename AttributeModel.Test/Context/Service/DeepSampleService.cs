@@ -3,7 +3,7 @@
 namespace AttributeModel.Test.Context.Service
 {
     [Service]
-    public class DeepSampleService : ISampleService
+    public class DeepSampleService : IDeepSampleService
     {
         
     }

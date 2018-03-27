@@ -1,10 +1,10 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using AttributeModel.Core.SimpleInjector;
 using AttributeModel.Core.SimpleInjector.Configuration;
-using AttributeModel.Test.Context;
 using AttributeModel.Test.Context.Repository;
+using AttributeModel.Test.Context.Service;
 using FluentAssertions;
-using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleInjector;
 
@@ -14,7 +14,7 @@ namespace AttributeModel.Test.Core.SimpleInjector
     public class ConfigurationTest
     {
         [TestMethod]
-        public void should_use_registered_assembly_when_configuration_instance_is_exist()
+        public void should_use_registered_assembly_when_repository_settings_is_exist()
         {
             var container = new Container();
             
@@ -23,21 +23,40 @@ namespace AttributeModel.Test.Core.SimpleInjector
                 Assembly = null,
                 RepositorySetting =  new RegistrationSetting
                 {
-//                    Assembly = null
                     Assembly = typeof(DeepSampleRepository).Assembly
                 }
             });
 
-            container.GetInstance<ISampleRepository>().Should().BeOfType<DeepSampleRepository>();
-            
-            roslynTest(null);
+            container.GetInstance<IDeepSampleRepository>().Should().BeOfType<DeepSampleRepository>();
         }
 
-        
-        
-        public void roslynTest([NotNull] object test)
+        [TestMethod]
+        public void should_use_registered_assembly_when_service_settings_is_exist()
         {
+            var container = new Container();
             
+            container.UseAttributeModel(new DefaultSetting
+            {
+                ServiceSetting = new RegistrationSetting
+                {
+                    Assembly = typeof(DeepSampleService).Assembly
+                }
+            });
+
+            container.GetInstance<IDeepSampleService>().Should().BeOfType<DeepSampleService>();
+        }
+
+        [Ignore("This is just linq test for this branch.")]
+        [TestMethod]
+        public void LinqTest()
+        {
+            new[] {Assembly.GetExecutingAssembly().ExportedTypes, Assembly.GetExecutingAssembly().ExportedTypes}
+                .SelectMany(e => e)
+                .Distinct()
+                .GroupBy(type => type)
+                .Select(types => types.Count())
+                .First()
+                .Should().Be(1);
         }
     }
 }

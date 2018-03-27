@@ -48,15 +48,25 @@ namespace AttributeModel.Core.SimpleInjector
                 e.Register(registration);
             };
 
-            service.Regist(types);
+            service.RegisterComponents(types);
         }
 
-        public static void UseAttributeModel(this Container container, DefaultSetting types)
+        public static void UseAttributeModel(this Container container, DefaultSetting setting)
         {
-            if(types.Assembly == null && types?.ServiceSetting?.Assembly == null && types?.RepositorySetting?.Assembly == null)
+            if(setting.Assembly == null && setting.ServiceSetting?.Assembly == null && setting.RepositorySetting?.Assembly == null)
                 throw new ArgumentNullException("There are no base base assemblies to registration.");
+
+            var types = new[]
+                {
+                    setting.Assembly?.ExportedTypes, 
+                    setting.ServiceSetting?.Assembly?.ExportedTypes,
+                    setting.RepositorySetting?.Assembly?.ExportedTypes
+                }
+                .Where(e => e != null)
+                .SelectMany(e => e)
+                .Distinct();
             
-            UseAttributeModel(container, types.Assembly.ExportedTypes, types.LifestyleType);
+            UseAttributeModel(container, types, setting.LifestyleType);
             
             
         }

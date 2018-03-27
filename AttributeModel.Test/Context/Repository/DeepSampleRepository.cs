@@ -3,7 +3,7 @@
 namespace AttributeModel.Test.Context.Repository
 {
     [Repository]
-    public class DeepSampleRepository : ISampleService
+    public class DeepSampleRepository : IDeepSampleRepository
     {
     }
 }
