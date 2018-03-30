@@ -1,7 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using AttributeModel.Core;
 using AttributeModel.Core.SimpleInjector;
 using AttributeModel.Core.SimpleInjector.Configuration;
+using AttributeModel.Test.Context;
 using AttributeModel.Test.Context.Repository;
 using AttributeModel.Test.Context.Service;
 using FluentAssertions;
@@ -13,38 +17,21 @@ namespace AttributeModel.Test.Core.SimpleInjector
     [TestClass]
     public class ConfigurationTest
     {
-        [TestMethod]
-        public void should_use_registered_assembly_when_repository_settings_is_exist()
-        {
-            var container = new Container();
-            
-            container.UseAttributeModel(new DefaultSetting
-            {
-                Assembly = null,
-                RepositorySetting =  new RegistrationSetting
-                {
-                    Assembly = typeof(DeepSampleRepository).Assembly
-                }
-            });
-
-            container.GetInstance<IDeepSampleRepository>().Should().BeOfType<DeepSampleRepository>();
-        }
 
         [TestMethod]
-        public void should_use_registered_assembly_when_service_settings_is_exist()
+        [DataRow(typeof(ISampleService), typeof(SampleService), LifestyleType.Scoped)]
+        [DataRow(typeof(ISampleRepository), typeof(SampleRepository), LifestyleType.Scoped)]
+        [DataRow(typeof(ISampleComponent), typeof(SampleComponent), LifestyleType.Singleton)]
+        public void  should_registered_default_provided_component_type(Type interfaceType, Type classType, LifestyleType type)
         {
             var container = new Container();
-            
-            container.UseAttributeModel(new DefaultSetting
-            {
-                ServiceSetting = new RegistrationSetting
-                {
-                    Assembly = typeof(DeepSampleService).Assembly
-                }
-            });
 
-            container.GetInstance<IDeepSampleService>().Should().BeOfType<DeepSampleService>();
+            container.UseAttributeModel(new DefaultSetting(Assembly.GetExecutingAssembly()));
+
+            container.GetInstance(interfaceType).Should().BeOfType(classType);
+            container.GetRegistration(interfaceType).Lifestyle.Should().Be(LifeStyleFactory.Create(type));
         }
+
 
         [Ignore("This is just linq test for this branch.")]
         [TestMethod]
@@ -58,5 +45,6 @@ namespace AttributeModel.Test.Core.SimpleInjector
                 .First()
                 .Should().Be(1);
         }
+
     }
 }

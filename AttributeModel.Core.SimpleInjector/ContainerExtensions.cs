@@ -28,8 +28,6 @@ namespace AttributeModel.Core.SimpleInjector
         /// <param name="defaultLifestyle">ComponentAttrbute default lifestyle</param>
         public static void UseAttributeModel(this Container container, IEnumerable<Type> types, LifestyleType defaultLifestyle)
         {
-            var service = new RegistService(new ResolveLoader(container));
-
             container.ResolveUnregisteredType += (sender, e) =>
             {
                 var unregistered = e.UnregisteredServiceType;
@@ -48,27 +46,40 @@ namespace AttributeModel.Core.SimpleInjector
                 e.Register(registration);
             };
 
-            service.RegisterComponents(types);
+            GetRegisterService(container).RegisterComponents(types);
+        }
+
+        private static RegistService GetRegisterService(Container container)
+        {
+            return new RegistService(new ResolveLoader(container));
         }
 
         public static void UseAttributeModel(this Container container, DefaultSetting setting)
         {
-            if(setting.Assembly == null && setting.ServiceSetting?.Assembly == null && setting.RepositorySetting?.Assembly == null)
-                throw new ArgumentNullException("There are no base base assemblies to registration.");
+            if(setting.Assembly == null)
+                throw new ArgumentNullException("There are no base base assembly to registration.");
 
-            var types = new[]
+            var registrationSettings = setting.ComponentSettings.Reverse().ToList();
+
+            var types = setting.Assembly.ExportedTypes
+                .Where(type => type.GetCustomAttribute<ComponentAttribute>(true) != null)
+                .Select(type =>
                 {
-                    setting.Assembly?.ExportedTypes, 
-                    setting.ServiceSetting?.Assembly?.ExportedTypes,
-                    setting.RepositorySetting?.Assembly?.ExportedTypes
-                }
-                .Where(e => e != null)
-                .SelectMany(e => e)
-                .Distinct();
-            
-            UseAttributeModel(container, types, setting.LifestyleType);
-            
-            
+                    var componentMeta = type.GetCustomAttribute<ComponentAttribute>(true);
+                    return new ComponentRegistration
+                    {
+                        InterfaceType = type.GetInterfaces().FirstOrDefault() ?? type,
+                        ClassType = type,
+                        LifestyleType = componentMeta.LifestyleType ??
+                                        registrationSettings.FirstOrDefault(s =>
+                                            s.ComponentType == componentMeta.GetType() &&
+                                            type.Namespace.StartsWith(s.Namespace ?? type.Namespace)
+                                        )?.LifestyleType ??
+                                        setting.LifestyleType
+                    };
+                });
+
+            GetRegisterService(container).RegisterComponents(types);
         }
     }
 }

@@ -1,30 +1,39 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Linq;
+using AttributeModel.Core.Attributes;
 using JetBrains.Annotations;
 
 namespace AttributeModel.Core.SimpleInjector.Configuration
 {
-    public class RegistrationSetting
+
+    public class RegistrationSetting: IRegistrationSetting
     {
-        public RegistrationSetting()
+        public RegistrationSetting(Type type)
         {
-        }
-        
-        public RegistrationSetting([NotNull] Assembly assembly)
-        {
-            Assembly = assembly;
+            if(!type.GetInterfaces().Any(typeof(ComponentAttribute).Equals))
+                throw new ArgumentException($"{nameof(type)} must extended {nameof(ComponentAttribute)}");
+            ComponentType = type;
         }
 
-        public RegistrationSetting([NotNull] Assembly assembly, LifestyleType lifestyleType)
+        public RegistrationSetting(Type type, LifestyleType lifestyleType) : this(type)
         {
-            Assembly = assembly;
             LifestyleType = lifestyleType;
         }
 
-        public Assembly Assembly { get; set; }
+        /// <inheritdoc />
+        public LifestyleType LifestyleType { get; } = LifestyleType.Singleton;
+        public string Namespace { get; }
+        public Type ComponentType { get; set; }
+    }
+    public class RegistrationSetting<T> : RegistrationSetting where T : IComponentAttribute
+    {
+        public RegistrationSetting() : base(typeof(T), LifestyleType.Singleton)
+        {
+            ComponentType = typeof(T);
+        }
 
-        /// <summary>
-        /// Default as singleton
-        /// </summary>
-        public LifestyleType LifestyleType { get; set; } = LifestyleType.Singleton;
+        public RegistrationSetting(LifestyleType lifestyleType) : base(typeof(T), lifestyleType)
+        {
+        }
     }
 }

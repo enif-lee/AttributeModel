@@ -1,10 +1,11 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace AttributeModel.Core.Attributes
 {
-    public class ComponentAttribute : Attribute
+    public class ComponentAttribute : Attribute, IComponentAttribute
     {
-        public LifestyleType? LifestyleType { get; set; }
+        [CanBeNull] public LifestyleType? LifestyleType { get; set; }
 
         public ComponentAttribute()
         {

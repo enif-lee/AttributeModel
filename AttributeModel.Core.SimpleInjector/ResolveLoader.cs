@@ -16,5 +16,14 @@ namespace AttributeModel.Core.SimpleInjector
         {
             Container.Register(interfaceType, implemented, LifeStyleFactory.Create(lifestyleType));
         }
+
+        public void Resolve(ComponentRegistration registration)
+        {
+            Container.Register(
+                registration.InterfaceType,
+                registration.ClassType,
+                LifeStyleFactory.Create(registration.LifestyleType)
+            );
+        }
     }
 }
