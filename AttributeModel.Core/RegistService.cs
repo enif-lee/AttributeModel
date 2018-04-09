@@ -8,19 +8,20 @@ namespace AttributeModel.Core
 {
     public class RegistService
     {
-        public IResolveLoader ResolveLoader { get; set; }
-
         public RegistService(IResolveLoader resolveLoader)
         {
             ResolveLoader = resolveLoader;
         }
+
+        public IResolveLoader ResolveLoader { get; set; }
 
         public void RegisterComponents(IEnumerable<Type> types)
         {
             RegisterComponents<ComponentAttribute>(types, LifestyleType.Singleton);
         }
 
-        public void RegisterComponents<T>(IEnumerable<Type> types, LifestyleType lifestyleType) where T : ComponentAttribute
+        public void RegisterComponents<T>(IEnumerable<Type> types, LifestyleType lifestyleType)
+            where T : ComponentAttribute
         {
             var registrations = types
                 .Where(type => type.GetCustomAttribute<T>(true) != null)

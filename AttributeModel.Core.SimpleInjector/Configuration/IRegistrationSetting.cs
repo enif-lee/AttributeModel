@@ -2,7 +2,8 @@
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
-[assembly:InternalsVisibleTo("AttributeModel.Test")]
+[assembly: InternalsVisibleTo("AttributeModel.Test")]
+
 namespace AttributeModel.Core.SimpleInjector.Configuration
 {
     public interface IRegistrationSetting
@@ -11,7 +12,7 @@ namespace AttributeModel.Core.SimpleInjector.Configuration
         [CanBeNull] string Namespace { get; }
 
         /// <summary>
-        /// Default as singleton
+        ///     Default as singleton
         /// </summary>
         LifestyleType LifestyleType { get; }
     }

@@ -5,6 +5,5 @@ namespace AttributeModel.Test.Context.Service
     [Service]
     public class DeepSampleService : IDeepSampleService
     {
-        
     }
 }

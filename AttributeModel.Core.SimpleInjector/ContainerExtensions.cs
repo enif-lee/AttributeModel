@@ -11,8 +11,8 @@ namespace AttributeModel.Core.SimpleInjector
     public static class ContainerExtensions
     {
         /// <summary>
-        /// Register calling assembly as default.
-        /// Default life style is scoped.
+        ///     Register calling assembly as default.
+        ///     Default life style is scoped.
         /// </summary>
         /// <param name="container">ioc container</param>
         public static void UseAttributeModel(this Container container)
@@ -21,12 +21,13 @@ namespace AttributeModel.Core.SimpleInjector
         }
 
         /// <summary>
-        /// Register components using assembly from parameter
+        ///     Register components using assembly from parameter
         /// </summary>
         /// <param name="container">ioc container</param>
         /// <param name="types">assemblies</param>
         /// <param name="defaultLifestyle">ComponentAttrbute default lifestyle</param>
-        public static void UseAttributeModel(this Container container, IEnumerable<Type> types, LifestyleType defaultLifestyle)
+        public static void UseAttributeModel(this Container container, IEnumerable<Type> types,
+            LifestyleType defaultLifestyle)
         {
             container.ResolveUnregisteredType += (sender, e) =>
             {
@@ -34,15 +35,15 @@ namespace AttributeModel.Core.SimpleInjector
 
                 if (!unregistered.IsClass || !unregistered.GetConstructors().Any(info => info.IsPublic))
                     return;
-                
+
                 var component = unregistered.GetCustomAttribute<ComponentAttribute>(true);
-                    
+
                 var lifestyle = component == null
                     ? Lifestyle.Singleton
                     : LifeStyleFactory.Create(component.LifestyleType ?? defaultLifestyle);
-                    
+
                 var registration = lifestyle.CreateRegistration(unregistered, container);
-    
+
                 e.Register(registration);
             };
 
@@ -56,7 +57,7 @@ namespace AttributeModel.Core.SimpleInjector
 
         public static void UseAttributeModel(this Container container, DefaultSetting setting)
         {
-            if(setting.Assembly == null)
+            if (setting.Assembly == null)
                 throw new ArgumentNullException("There are no base base assembly to registration.");
 
             var registrationSettings = setting.ComponentSettings.Reverse().ToList();

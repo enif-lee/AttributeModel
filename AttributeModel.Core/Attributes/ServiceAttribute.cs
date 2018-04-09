@@ -2,7 +2,7 @@
 {
     public class ServiceAttribute : ComponentAttribute
     {
-        public ServiceAttribute() : base()
+        public ServiceAttribute()
         {
         }
 

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AttributeModel.Core;
 using AttributeModel.Core.SimpleInjector;
 using AttributeModel.Core.SimpleInjector.Configuration;
 using AttributeModel.Test.Context;
-using AttributeModel.Test.Context.Repository;
-using AttributeModel.Test.Context.Service;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleInjector;
@@ -17,12 +14,12 @@ namespace AttributeModel.Test.Core.SimpleInjector
     [TestClass]
     public class ConfigurationTest
     {
-
         [TestMethod]
         [DataRow(typeof(ISampleService), typeof(SampleService), LifestyleType.Scoped)]
         [DataRow(typeof(ISampleRepository), typeof(SampleRepository), LifestyleType.Scoped)]
         [DataRow(typeof(ISampleComponent), typeof(SampleComponent), LifestyleType.Singleton)]
-        public void  should_registered_default_provided_component_type(Type interfaceType, Type classType, LifestyleType type)
+        public void should_registered_default_provided_component_type(Type interfaceType, Type classType,
+            LifestyleType type)
         {
             var container = new Container();
 
@@ -45,6 +42,5 @@ namespace AttributeModel.Test.Core.SimpleInjector
                 .First()
                 .Should().Be(1);
         }
-
     }
 }

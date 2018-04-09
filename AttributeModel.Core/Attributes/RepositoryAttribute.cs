@@ -5,7 +5,7 @@
         public RepositoryAttribute()
         {
         }
-        
+
         public RepositoryAttribute(LifestyleType lifestyleType) : base(lifestyleType)
         {
         }

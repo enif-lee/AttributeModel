@@ -5,6 +5,5 @@ namespace AttributeModel.Test.Context
     [Service]
     public class SampleService : ISampleService
     {
-        
     }
 }
