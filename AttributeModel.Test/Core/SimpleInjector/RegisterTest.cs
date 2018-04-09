@@ -13,19 +13,6 @@ namespace AttributeModel.Test.Core.SimpleInjector
     {
         private Container _container;
 
-        [TestInitialize]
-        public void Setup()
-        {
-            _container = new Container
-            {
-                Options =
-                {
-                    DefaultScopedLifestyle = new TestScopedLifestyle(),
-                }
-            };
-            _container.Regist();
-        }
-        
         [TestMethod]
         public void should_regist_components()
         {
@@ -39,7 +26,7 @@ namespace AttributeModel.Test.Core.SimpleInjector
         {
             var a = _container.GetInstance<ISampleComponent>();
             var b = _container.GetInstance<ISampleComponent>();
-            
+
             a.Should().Be(b);
         }
 
@@ -49,7 +36,7 @@ namespace AttributeModel.Test.Core.SimpleInjector
         {
             var a = _container.GetInstance<UnregisterTypeSingleton>();
             var b = _container.GetInstance<UnregisterTypeSingleton>();
-            
+
             a.Should().BeEquivalentTo(b);
         }
 
@@ -58,8 +45,30 @@ namespace AttributeModel.Test.Core.SimpleInjector
         {
             var a = _container.GetInstance<UnregisterTypeTransient>();
             var b = _container.GetInstance<UnregisterTypeTransient>();
-            
+
             a.Should().NotBe(b);
+        }
+
+        [TestMethod]
+        public void should_throw_error_when_request_unregisterd_interface_type()
+        {
+            Action action = () => { _container.GetInstance<IUnregisteredInterface>(); };
+
+            action.Should()
+                .ThrowExactly<ActivationException>("No registration for type UnregisteredInterface could be found.");
+        }
+
+        [TestInitialize]
+        public void Setup()
+        {
+            _container = new Container
+            {
+                Options =
+                {
+                    DefaultScopedLifestyle = new TestScopedLifestyle()
+                }
+            };
+            _container.UseAttributeModel();
         }
 
         [TestMethod]
@@ -67,16 +76,8 @@ namespace AttributeModel.Test.Core.SimpleInjector
         {
             var a = _container.GetInstance<UnregisterTypeWithoutAttribute>();
             var b = _container.GetInstance<UnregisterTypeWithoutAttribute>();
-            
+
             a.Should().BeEquivalentTo(b);
-        }
-
-        [TestMethod]
-        public void should_throw_error_when_request_unregisterd_interface_type()
-        {
-            var action = new Action(() => { _container.GetInstance<UnregisteredInterface>(); });
-
-            action.Should().ThrowExactly<ActivationException>("No registration for type UnregisteredInterface could be found.");
         }
     }
 }

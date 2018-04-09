@@ -1,7 +1,6 @@
 ﻿namespace AttributeModel.Test.Context
 {
-    public interface UnregisteredInterface
+    public interface IUnregisteredInterface
     {
-        
     }
 }

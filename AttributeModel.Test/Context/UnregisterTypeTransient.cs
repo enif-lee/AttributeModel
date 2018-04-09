@@ -5,6 +5,6 @@ namespace AttributeModel.Test.Context
 {
     [Component(LifestyleType.Transient)]
     public class UnregisterTypeTransient
-    {       
+    {
     }
 }

@@ -1,4 +1,4 @@
-﻿﻿namespace AttributeModel.Test.Core
+﻿namespace AttributeModel.Test.Core
 {
     public interface IRegisterTest
     {

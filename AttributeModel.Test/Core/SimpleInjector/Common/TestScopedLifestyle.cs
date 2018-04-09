@@ -5,7 +5,7 @@ namespace AttributeModel.Test.Core.SimpleInjector.Common
 {
     public class TestScopedLifestyle : ScopedLifestyle
     {
-        private Scope _scope = new Scope();
+        private readonly Scope _scope = new Scope();
 
         public TestScopedLifestyle() : base(nameof(TestScopedLifestyle))
         {

@@ -8,24 +8,36 @@ namespace AttributeModel.Core
 {
     public class RegistService
     {
-        public IResolveLoader ResolveLoader { get; set; }
-
         public RegistService(IResolveLoader resolveLoader)
         {
             ResolveLoader = resolveLoader;
         }
 
-        public void Regist(IEnumerable<Type> types)
+        public IResolveLoader ResolveLoader { get; set; }
+
+        public void RegisterComponents(IEnumerable<Type> types)
         {
-            types
-                .Where(type => type.GetCustomAttribute<ComponentAttribute>(true) != null)
-                .Select(type => (
-                    Interface: type.GetInterfaces().SingleOrDefault() ?? type, 
-                    Implemented: type, 
-                    LifeStyle: type.GetCustomAttribute<ComponentAttribute>(true).LifestyleType
-                ))
-                .ToList()
-                .ForEach(meta => ResolveLoader.Resolve(meta.Interface, meta.Implemented, meta.LifeStyle));
+            RegisterComponents<ComponentAttribute>(types, LifestyleType.Singleton);
+        }
+
+        public void RegisterComponents<T>(IEnumerable<Type> types, LifestyleType lifestyleType)
+            where T : ComponentAttribute
+        {
+            var registrations = types
+                .Where(type => type.GetCustomAttribute<T>(true) != null)
+                .Select(type => new ComponentRegistration
+                {
+                    InterfaceType = type.GetInterfaces().SingleOrDefault() ?? type,
+                    ClassType = type,
+                    LifestyleType = type.GetCustomAttribute<T>(true).LifestyleType ?? lifestyleType
+                });
+
+            RegisterComponents(registrations);
+        }
+
+        public void RegisterComponents(IEnumerable<ComponentRegistration> componentRegistrations)
+        {
+            componentRegistrations.ToList().ForEach(ResolveLoader.Resolve);
         }
     }
 }
