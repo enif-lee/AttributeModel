@@ -8,7 +8,7 @@ namespace AttributeModel.Core.SimpleInjector.Configuration
     {
         public RegistrationSetting(Type type)
         {
-            if (!type.GetInterfaces().Any(typeof(ComponentAttribute).Equals))
+            if (!type.GetInterfaces().Any(typeof(IComponentAttribute).Equals))
                 throw new ArgumentException($"{nameof(type)} must extended {nameof(ComponentAttribute)}");
             ComponentType = type;
         }
