@@ -45,7 +45,7 @@ namespace AttributeModel.Core.SimpleInjector
                 e.Register(registration);
             };
 
-            service.Regist(types);
+            service.Register(types);
         }
     }
 }
