@@ -80,7 +80,27 @@ public class UserService : IUserService
 }
 ```
 
+여러 인터페이스에 대해서 하나의 구체 클래스에 구현한 경우에도 모두 등록됩니다. 단! 같은 인터페이스가 여러 구체 클래스에 등록하는 경우엔
+에러가 발생할 수 있습니다.
+
+```csharp
+[Service]
+public UserService : IUserService, IUserTypeFactory
+{
+}
+```
+
+컬렉션이나 `IDisposable`에 대한 등록은 기본적으로 제외되며, 클래스타입으로 등록됩니다. 
+
+```csharp
+[Repository]
+public ProjectRepository : IDisposable // ProjectRepository 타입으로 등록됨
+{
+}
+```
+
 위와 같은 설정이 끝나셨다면 더 이상 등록할 필요 없이 DI를 즐기시면 됩니다!
+
 
 ## Extensions
 
