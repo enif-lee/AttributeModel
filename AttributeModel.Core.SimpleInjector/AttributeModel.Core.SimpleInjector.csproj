@@ -2,11 +2,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>AttributeModel.Core.SimpleInjector</PackageId>
+    <PackageVersion>1.0.1</PackageVersion>
     <Authors>Jinseoung Lee</Authors>
     <Description>AttributeModel.Core Extension for SimpleInjector</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright 2017 yano2413@gmail.com. All rights reserved.</Copyright>
     <PackageTags>IoC DI AMP Attribute-Programming-Model ASP.NET</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="SimpleInjector" Version="4.0.12" />
